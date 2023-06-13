@@ -301,89 +301,89 @@ namespace Bank.Model.Common.Implementations
 
         public void Login()
         {
-
-            Console.WriteLine("Please wait while processing...");
+            Console.WriteLine("Please wait while processing...");
             Thread.Sleep(3000);
-            
             Console.Clear();
-
             Console.WriteLine("LOGIN\n");
-
             string accountNumber = _Validate.GetAccountNumber();
-
             string password = _Validate.GetPassword();
 
-            // Find the account by account number and password
             AccountModel account = GetAccounts().Find(a => a.AccountNumber == accountNumber && a.Password == password);
 
             if (account != null)
             {
-
                 Console.Clear();
-
                 Console.WriteLine("Please wait while processing...");
                 Thread.Sleep(5000);
-
                 Console.Clear();
-                // Create a new thread for the logged-in user menu loop
+
                 Thread userMenuThread = new Thread(() =>
                 {
-
                     Console.WriteLine($"Welcome, {account.OwnerFullName} ({account.AccountNumber})!");
 
-                int choice;
-                do
-                {
-                    //Console.Clear();
-                    _UI.UserMenu();
-
-                    choice = _Validate.GetChoice(7);
-
-                    switch (choice)
+                    int choice;
+                    do
                     {
-                        case 1:
-                            Console.Clear();
-                            Deposit(account);
-                            break;
-                        case 2:
-                            Console.Clear();
-                            Withdraw(account);
-                            break;
-                        case 3:
-                            Console.Clear();
-                            Transfer(account);
-                            break;
-                        case 4:
-                            Console.Clear();
-                            _Print.Statement(account);
-                            break;
-                        case 5:
-                            Console.Clear();
-                            _Print.Balance(account);
-                            break;
-                        case 6:
-                            Console.Clear();
-                            CreateAccount();
-                            break;
-                        case 7:
-                            Console.WriteLine("Exiting...");
-                            Console.Clear();
-                            break;
-                        default:
-                            Console.WriteLine("Invalid choice. Please try again.");
-                            Console.Clear();
-                            break;
-                    }
+                        _UI.UserMenu();
 
-                    Console.WriteLine();
-                } while (choice != 7);
+                        choice = _Validate.GetChoice(7);
 
+                        switch (choice)
+                        {
+                            case 1:
+                                Thread depositThread = new Thread(() =>
+                                {
+                                    Console.Clear();
+                                    Deposit(account);
+                                });
+                                depositThread.Start();
+                                depositThread.Join();
+                                break;
+                            case 2:
+                                Thread withdrawThread = new Thread(() =>
+                                {
+                                    Console.Clear();
+                                    Withdraw(account);
+                                });
+                                withdrawThread.Start();
+                                withdrawThread.Join();
+                                break;
+                            case 3:
+                                Thread transferThread = new Thread(() =>
+                                {
+                                    Console.Clear();
+                                    Transfer(account);
+                                });
+                                transferThread.Start();
+                                transferThread.Join();
+                                break;
+                            case 4:
+                                Console.Clear();
+                                _Print.Statement(account);
+                                break;
+                            case 5:
+                                Console.Clear();
+                                _Print.Balance(account);
+                                break;
+                            case 6:
+                                Console.Clear();
+                                CreateAccount();
+                                break;
+                            case 7:
+                                Console.WriteLine("Exiting...");
+                                Console.Clear();
+                                break;
+                            default:
+                                Console.WriteLine("Invalid choice. Please try again.");
+                                Console.Clear();
+                                break;
+                        }
+
+                        Console.WriteLine();
+                    } while (choice != 7);
                 });
 
-                // Start the user menu thread
                 userMenuThread.Start();
-
-                // Wait for the user menu thread to complete
                 userMenuThread.Join();
             }
             else
