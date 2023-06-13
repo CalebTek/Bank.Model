@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yCcOIJFz6vPfLdZ3W/rMbSuZ8hFTqoWxOKuKyQd8+3v4rIccYyelvoHmW+EptIgKbkBG3VVv6TmSF3B8pqNuVg==",
+  "dgSpecHash": "fD5WpkEZ9/VNkhSqL7YBaKz7PhI+u+4/JH/VZgBYSkrEm/j+hMhs8rXyexFm4RvDtBQC2CWXtzQNMldEs/OmZQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Projects\\Bank.Model\\Bank.Model.Test\\Bank.Model.Test.csproj",
+  "projectFilePath": "C:\\Users\\Decagon Laptop\\OneDrive\\Documents\\Codes\\Projects\\Bank.Model\\Bank.Model\\Bank.Model.Test\\Bank.Model.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Decagon Laptop\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",

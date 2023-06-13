@@ -182,6 +182,8 @@ namespace Bank.Model.Common.Implementations
             Thread.Sleep(3000);
             Console.Clear();
 
+            _UI.AppMenu();
+
             int choice;
             do
             {

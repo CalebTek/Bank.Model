@@ -16,5 +16,6 @@ namespace Bank.Model.Common.Models
         {
             Transactions = new List<TransactionModel>();
         }
+
     }
 }
